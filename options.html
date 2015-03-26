@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <meta name="keywords" content="XHTML, CSS, template, FullAhead"/>
+    <meta name="description" content="Take control of scripting in your browser."/>
+    <meta name="robots" content="index, follow, noarchive"/>
+    <meta name="googlebot" content="noarchive"/>
+
+    <title>Options | ScriptBlock</title>
+    <link type="text/css" href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet"/>
+    <style type="text/css">
+        body {
+            font: 12px "Trebuchet MS", sans-serif;
+            margin: 10px;
+            width: 800px;
+            margin: auto;
+            padding: 10px 0px 10px;
+        }
+
+        #dialog_link {
+            padding: .4em 1em .4em 20px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        #dialog_link span.ui-icon {
+            margin: 0 5px 0 0;
+            position: absolute;
+            left: .2em;
+            top: 50%;
+            margin-top: -8px;
+        }
+
+        ul#icons {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul#icons li {
+            margin: 2px;
+            position: relative;
+            padding: 4px 0;
+            cursor: pointer;
+            float: left;
+            list-style: none;
+        }
+
+        ul#icons span.ui-icon {
+            float: left;
+            margin: 0 4px;
+        }
+
+        input.largerCheckbox {
+            width: 30px;
+            height: 20px;
+        }
+
+        button.actionButton {
+            width: 400px;
+            height: auto;
+            margin: 15px auto;
+            padding: 1px 2px 1px 2px;
+            display: none;
+            text-align: center;
+            overflow: auto;
+        }
+
+        a {
+            outline-color: transparent;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="CHANGE__PASSWORD__HERE.js"></script>
+    <script src="common/common.js"></script>
+    <script src="options.js"></script>
+</head>
+<body bgcolor="ffffff">
+<div style="position: relative; width: auto; height: auto;left: 0px; top: 0px; padding: 5px; overflow:hidden;"
+     class="ui-widget ui-widget-content ui-corner-all">
+    <div style="display:inline">
+        <img src="img/icon48.png" width="48" height="48" style="padding: 10px 0px 0px 10px">
+        <label id="labelHeaderTitle"
+               style="font-size:36px; font-weight: bold; padding: 0px 0px 0px 20px">ScriptBlock</label>
+    </div>
+    <br/><br/>
+
+    <div style="display:inline">
+        <label id="labelHeaderVersion" style="padding: 0px 0px 0px 20px"></label>
+
+
+        <form style="position: absolute; left: 690px; top:
+ 70px;" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="XJZJUMSDKPESC">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0"
+                   name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+    </div>
+</div>
+<div id="tabs" style="height: auto;">
+<ul>
+    <li><a href="#tabs-Lists">Settings</a></li>
+    <li><a href="#tabs-PasswordStatus">Password Status</a></li>
+    <li><a href="#tabs-About">About</a></li>
+</ul>
+
+<button id="extFatalError" name="actionButton" class="actionButton">
+    <span style="font-size:36px; color:red;">( ! )</span><br/><br/>ScriptBlock encountered corrupted settings data in
+    Google Chrome / Exceeded extension storage quota in Google Chrome.<br/><br/>Click here to clear<br/>the ScriptBlock
+    settings lists<br/>to try to solve the problem.<br/><br/>Otherwise, please ensure Google Chrome has javascript and
+    HTML5 storage enabled.<br/><br/>Contact the author of ScriptBlock if you repeatedly get this message.
+</button>
+
+<button id="reloadExt" name="actionButton"
+        class="actionButton">
+    <span style="font-size:36px; color:red;">( ! )</span><br/><br/>Click to reload ScriptBlock after you copy back your
+    password file.
+</button>
+
+<div id="tabs-PasswordStatus">
+    <div id="passwordGood" class="ui-widget">
+        <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+            <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                <strong>Password is set:</strong> ScriptBlock is working. Enjoy your browsing.</p>
+        </div>
+    </div>
+
+    <div id="extUpdated" class="ui-widget">
+        <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+                <strong>ALERT! ScriptBlock has updated to Version <span name="updatedToVer"></span></strong> You will
+                need to copy back your <i><b>CHANGE__PASSWORD__HERE.js</b></i> file into the ScriptBlock folder or
+                re-enter your password. If you change to a different password, remember to clear the Google Chrome's
+                HTML5 storage in the cookies area.</p>
+        </div>
+    </div>
+
+    <div id="passwordBad" class="ui-widget">
+        <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+                <strong>ALERT! No password set for ScriptBlock.</strong> <span name="pwdProbDescrip"></span> Will
+                default
+                deny scripts until changed and this message will show on each browser start up.</p>
+        </div>
+    </div>
+    <br/>
+
+    <h3>Default Passwordt</h3>
+
+    <div style="margin-left: 40px;">In &quot;NotScripts&quot; on witch ScriptBlock is based, many people had problems to
+        set the password. This was the reason, I decided to set a default password. This lowers the the security a bit,
+        but I don't think that this matters a lot. Most other chrome extensions using whitelists don't even use encryption. If
+        you want to improve your privacy protection, you can change the password anytime like described below. If you
+        don't want to edit the password, just ignore the rest of this page.<br>
+    </div>
+    <p>&nbsp;</p>
+
+    <h3>What the Password is for</h3>
+
+    <div style="margin-left: 40px;">A ScriptBlock password is
+        required to be set for the initial use on a computer or if ScriptBlock
+        was updated. The password is used to protect your privacy by preventing
+        web sites from viewing the ScriptBlock whitelist caches. Due to
+        technical limitations, you are required to open a file to set the
+        password.<br>
+    </div>
+    <br>
+
+    <p><br>
+        <br>
+
+    </p>
+
+    <h3>Instructions to set Password</h3>
+
+    <div style="margin-left: 40px;">Setting your ScriptBlock
+        password is simple once you've done it for the first time. Simply
+        follow these steps:
+    </div>
+    <h4 style="margin-left: 40px;">Step 1:&nbsp;Navigate
+        to the ScriptBlock Folder</h4>
+
+    <div style="margin-left: 80px;">Open the ScriptBlock Google
+        Chrome extension folder. The location of this folder is shown below. You can go there by directly copying and
+        pasting the appropriate address below into the location bar of a folder:<br>
+        <ul>
+            <li><span style="font-style: italic;">Windows XP:</span>
+                &nbsp; %userprofile%\Local
+                Settings\Application Data\Google\Chrome\User Data\Default\Extensions\<span
+                        name="extensionId"></span></li>
+        </ul>
+        <ul>
+            <li><span style="font-style: italic;">Windows
+			Vista or 7:</span> &nbsp; %userprofile%\AppData\Local\Google\Chrome\User
+                Data\Default\Extensions\<span name="extensionId"></span></li>
+        </ul>
+        <ul>
+            <li><span style="font-style: italic;">Mac OS X:</span>
+                &nbsp; ~/Library/Application
+                Support/Google/Chrome/Default/Extensions/<span name="extensionId"></span></li>
+        </ul>
+        <ul>
+            <li><span style="font-style: italic;">Linux:</span>
+                &nbsp;
+                ~/.config/google-chrome/Default/Extensions/<span name="extensionId"></span></li>
+        </ul>
+
+        Note: For Windows users, change <span
+                style="font-weight: bold; font-style: italic;">YOUR_USER_NAME</span>
+        to the user name to
+        you are logged onto under Windows. If you're using Windows Explorer to
+        navigate to the folder, you might need to set <span
+                style="font-weight: bold; font-style: italic;">Show hidden
+			files and
+			folders</span> in <span
+                style="font-weight: bold; font-style: italic;">Tools
+			&gt; Folder Options... &gt; View</span>.<br>
+        <br>
+        For convenience, it is recommended that you make a shortcut to this
+        folder on your desktop or somewhere handy so that you can quickly reset
+        the ScriptBlock password after an update.<br>
+    </div>
+    <div style="margin-left: 40px;"><br>
+    </div>
+    <h4 style="margin-left: 40px;">Step 2: Open the ScriptBlock
+        Password File</h4>
+
+    <div style="margin-left: 80px;">Open the file&nbsp;<span
+            style="font-weight: bold; font-style: italic;">CHANGE__PASSWORD__HERE.js</span>
+        for editing. For Windows users, do this by right-clicking on the file
+        and selecting&nbsp;<span
+                style="font-weight: bold; font-style: italic;">Edit</span>
+        from the right-click menu. This will open up the file in NotePad for
+        you to enter your ScriptBlock password. <br>
+    </div>
+    <div style="margin-left: 40px;"><br>
+    </div>
+    <h4 style="margin-left: 40px;">Step 3: Set the ScriptBlock
+        Password</h4>
+
+    <div style="margin-left: 80px;">Choose a password for
+        ScriptBlock with the following restrictions:<br>
+        <br>
+
+        <div style="margin-left: 40px;"><span
+                style="font-weight: bold;">Length:</span> 20 minimum,
+            100 maximum<br>
+            <span style="font-weight: bold;">Allowed Characters:</span>
+            abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890<br>
+            <span style="font-weight: bold;">Spaces:</span>
+            Allowed<br>
+        </div>
+        &nbsp;<br>
+        Put the password in between the quotes of the line that reads:<br>
+        <br>
+
+        <div style="margin-left: 40px;">
+			<span style="font-weight: bold; font-style: italic;">const
+			ENCRYPTION_PASSWORD = "";</span>
+        </div>
+        <br>
+        Example: <span style="font-style: italic;">FNqzJmJBA1GQFhuXBmEq20MqEqbn55w3MtT</span><br>
+        It should look like this after (except with your own password):<br>
+
+        <div style="margin-left: 40px;">
+            <br style="font-weight: bold; font-style: italic;">
+			<span style="font-weight: bold; font-style: italic;">const
+			ENCRYPTION_PASSWORD = "FNqzJmJBA1GQFhuXBmEq20MqEqbn55w3MtT";</span>
+        </div>
+        <br>
+        Save the file and close it when finished.<br>
+    </div>
+    <div style="margin-left: 40px;"><br>
+    </div>
+    <h4 style="margin-left: 40px;">Step 4: Restart Google
+        Chrome</h4>
+
+    <div style="margin-left: 80px;">Close and restart Google
+        Chrome for the new password to take effect in ScriptBlock. You are done!<br>
+    </div>
+    <br>
+    <br>
+
+    <h3>Backing Up Your Password File for Future Use</h3>
+
+    <div style="margin-left: 40px;">When ScriptBlock updates or
+        you try to use ScriptBlock on a different computer for the first
+        time&nbsp;with Google Chrome Sync, you will be required to provide
+        the password. It is highly recommended that you store a backup copy of
+        your password or password file somewhere handy for these purposes.<br>
+    </div>
+    <br>
+    <br>
+
+    <h3>Clear Your Browser HTML5 Storage if You Change to Another Password</h3>
+
+    <div style="margin-left: 40px;">If you change to a different password, it is important that you clear your browser's
+        HTML5 storage so that the old encrypted caches for ScriptBlock are also cleared. This can be done in Google
+        Chrome by clearing your cookies, which also clears the HTML5 storage at the same time. Otherwise, you will have
+        to manually reload a few web sites for the first bit after changing to a different password.<br>
+    </div>
+</div>
+<div id="tabs-Lists">
+
+    <h3>Whitelist</h3>
+
+    <p>Whitelisted sites are allowed to load scripts/iframes/plugins from source locations when they are referenced on a
+        web page.</p>
+
+    <p>
+        You can change what is in the lists here or through the extension's page action button. Some top web sites are
+        preloaded.
+        For example, to whitelist http://www.google.com, you enter</p>
+    <b>&nbsp;&nbsp;&nbsp;google.com </b><br/>
+
+    <p>which also whitelists google.com, maps.google.com, books.google.com, etc...</p>
+    <br/>
+    <table width="600" border="0">
+        <tr>
+            <td width="295"><h4>Whitelist</h4></td>
+            <td width="295"><h4>Temp Whitelist (Does not update live)</h4></td>
+        </tr>
+        <tr>
+            <td>
+                <textarea name="whitelist" id="whitelist" cols="40" rows="12"
+                          style="padding: 10px 10px 10px 10px"></textarea>
+            </td>
+            <td>
+                <textarea name="tempAllowList" id="tempAllowList" cols="40" rows="12"
+                          style="padding: 10px 10px 10px 10px"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button name="button_ListSave" id="button_ListSave">Save List Changes</button>
+            </td>
+        </tr>
+        <tr>
+            <td height="43" colspan="2">&nbsp;</td>
+        </tr>
+    </table>
+</div>
+<div id="tabs-About">
+ScriptBlock is based on the old Chrome Extension &quot;NotScripts&quot;. It gives
+you greater control over
+what javascript, iframes, and plugins runs in your browser to increase security and lower the
+CPU usage. It is useful to help mitigate attacks like cross-site
+scripting (XSS) and drive by downloads by minimizing the third party content run. <br><br>
+Most credits go to Eric Wong for his great extension &quot;NotScripts&quot;.<br>
+<br>
+For more information, updates, and to view the change log, please visit
+the project homepage at:<br>
+
+<div style="padding: 10px 10px 10px 50px">
+    <h2><a href="https://code.google.com/p/scriptblock/">https://code.google.com/p/scriptblock/</a><a
+            href="https://code.google.com/p/scriptblock/"></a></h2>
+</div>
+<br>
+
+<h3>Bug Reports</h3>
+
+<p>To report a bug, please copy and paste the following information to a bug report at:
+
+<div style="padding: 0px 0px 0px 50px">
+    <h3>
+        <a href="http://code.google.com/p/scriptblock/issues/list">http://code.google.com/p/scriptblock/issues/list</a>
+    </h3>
+</div>
+Remember to include steps to reproduce the bug or a link to a site where the bug occurred.
+</p>
+
+<h3><span name="blockingMode"></span></h3>
+
+<h3>List Stats</h3>
+
+<p>Total # Entries: <span name="numListEntries"></span></p>
+
+<p>Space Occupied (dual-byte encoding): <span name="listSpace"></span> bytes
+    / <span name="maxStorageSize"></span> bytes (<span name="listSpacePct"></span> %)</p>
+
+<p>Est. Space Occupied Encrypted (dual-byte encoding): <span name="listSizeEncrypted"></span> bytes
+    / <span name="maxStorageSize"></span> bytes (<span name="listSizeEncryptedPct"></span> %)</p>
+
+<p>Est. Max. Entries: <span name="estMaxListEntries"></span></p>
+
+<h3>User Agent</h3>
+<span name="userAgent"></span>
+
+
+<p>ScriptBlock is open source and is released under the GNU General Public
+    License V3. This license and the license for code portions used from other projects are shown below:<br>
+    <br>
+
+</p>
+<ul>
+<li><big><span style="font-weight: bold;">ScriptBlock</span></big><br>
+    <br>
+    &nbsp;&nbsp;&nbsp; Copyright © 2013-2014&nbsp; Oliver von Schleusen&nbsp;&nbsp;&nbsp;<br>
+    &nbsp;&nbsp;&nbsp; Parts are 
+  Copyright &copy; 2010&nbsp;&nbsp;Eric Wong&nbsp; <br><br>
+  &nbsp;&nbsp;&nbsp; This program is free software: you can
+  redistribute it and/or modify<br>
+  &nbsp;&nbsp;&nbsp; it under the terms of the GNU General
+  Public License as published by<br>
+  &nbsp;&nbsp;&nbsp; the Free Software Foundation, either
+  version 3 of the License, or<br>
+  &nbsp;&nbsp;&nbsp; (at your option) any later version.<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; This program is distributed in the hope
+  that it will be useful,<br>
+  &nbsp;&nbsp;&nbsp; but WITHOUT ANY WARRANTY; without even
+  the implied warranty of<br>
+  &nbsp;&nbsp;&nbsp; MERCHANTABILITY or FITNESS FOR A
+  PARTICULAR PURPOSE.&nbsp; See the<br>
+  &nbsp;&nbsp;&nbsp; GNU General Public License for more
+  details.<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; You should have received a copy of the
+  GNU General Public License<br>
+  &nbsp;&nbsp;&nbsp; along with this program.&nbsp; If
+  not, see &lt;<a style="font-weight: bold;"
+                    href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.<br>
+  <br>
+  <br>
+</li>
+
+<li><big><span style="font-weight: bold;">Stanford
+		Javascript Crypto Library</span></big><br>
+    <br>
+    Copyright © 2010 Emily Stark, Mike Hamburg and Dan Boneh. All rights
+    reserved. (<a style="font-weight: bold;"
+                  href="http://crypto.stanford.edu/sjcl/">http://crypto.stanford.edu/sjcl/</a>)<br>
+    <br>
+    Redistribution and use in source and binary forms, with or without
+    modification, are<br>
+    permitted provided that the following conditions are met:<br>
+    <br>
+    &nbsp;&nbsp; 1. Redistributions of source code must retain the
+    above copyright notice, this list of<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conditions and the
+    following disclaimer.<br>
+    <br>
+    &nbsp;&nbsp; 2. Redistributions in binary form must reproduce
+    the above copyright notice, this list<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; of conditions and
+    the following disclaimer in the documentation and/or other materials<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; provided with the
+    distribution.<br>
+    <br>
+    THIS SOFTWARE IS PROVIDED BY Emily Stark, Mike Hamburg and Dan Boneh
+    ``AS IS'' AND ANY EXPRESS OR IMPLIED<br>
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND<br>
+    FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+    &lt;COPYRIGHT HOLDER&gt; OR<br>
+    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR<br>
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR<br>
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON<br>
+    ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    (INCLUDING<br>
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF<br>
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.<br>
+    <br>
+    The views and conclusions contained in the software and documentation
+    are those of the<br>
+    authors and should not be interpreted as representing official
+    policies, either expressed<br>
+    or implied, of Emily Stark, Mike Hamburg and Dan Boneh.
+</li>
+<br>
+<br>
+<li><big><span style="font-weight: bold;">AdBlock
+		for Chrome and Safari</span></big> (port.js file - To be
+    used to port
+    ScriptBlock to Apple Safari in the future) <br>
+    <br>
+    &nbsp;&nbsp;&nbsp; Copyright © 2010 Michael Gundlach (<a
+            style="font-weight: bold;"
+            href="http://code.google.com/p/adblockforchrome/">http://code.google.com/p/adblockforchrome/</a>)<br>
+    <br>
+    And distributed under the following license ("MIT"):<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; Permission is hereby granted, free of
+    charge, to any person<br>
+    &nbsp;&nbsp;&nbsp; obtaining a copy of this software and
+    associated documentation<br>
+    &nbsp;&nbsp;&nbsp; files (the "Software"), to deal in the
+    Software without<br>
+    &nbsp;&nbsp;&nbsp; restriction, including without
+    limitation the rights to use,<br>
+    &nbsp;&nbsp;&nbsp; copy, modify, merge, publish,
+    distribute, sublicense, and/or sell<br>
+    &nbsp;&nbsp;&nbsp; copies of the Software, and to permit
+    persons to whom the<br>
+    &nbsp;&nbsp;&nbsp; Software is furnished to do so, subject
+    to the following<br>
+    &nbsp;&nbsp;&nbsp; conditions:<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; The above copyright notice and this
+    permission notice shall be<br>
+    &nbsp;&nbsp;&nbsp; included in all copies or substantial
+    portions of the Software.<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; THE SOFTWARE IS PROVIDED "AS IS",
+    WITHOUT WARRANTY OF ANY KIND,<br>
+    &nbsp;&nbsp;&nbsp; EXPRESS OR IMPLIED, INCLUDING BUT NOT
+    LIMITED TO THE WARRANTIES<br>
+    &nbsp;&nbsp;&nbsp; OF MERCHANTABILITY, FITNESS FOR A
+    PARTICULAR PURPOSE AND<br>
+    &nbsp;&nbsp;&nbsp; NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT<br>
+    &nbsp;&nbsp;&nbsp; HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+    OR OTHER LIABILITY,<br>
+    &nbsp;&nbsp;&nbsp; WHETHER IN AN ACTION OF CONTRACT, TORT
+    OR OTHERWISE, ARISING<br>
+    &nbsp;&nbsp;&nbsp; FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR<br>
+    &nbsp;&nbsp;&nbsp; OTHER DEALINGS IN THE SOFTWARE.
+</li>
+<br>
+<br>
+<li><big><span style="font-weight: bold;">AdThwart</span></big>
+    ("relativeToAbsoluteUrl" function)<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Copyright
+    © 2010 Tom Joseph (<a href="http://code.google.com/p/adthwart/" style="font-weight: bold;">http://code.google.com/p/adthwart/</a>)<br>
+    &nbsp;&nbsp;&nbsp; <br>
+    &nbsp;&nbsp;&nbsp; The contents of this file are subject to
+    the Mozilla Public License Version <br>
+    &nbsp;&nbsp;&nbsp; 1.1 (the "License"); you may not use
+    this file except in compliance with <br>
+    &nbsp;&nbsp;&nbsp; the License. You may obtain a copy of
+    the License at <br>
+    &nbsp;&nbsp;&nbsp; http://www.mozilla.org/MPL/<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; Software distributed under the License
+    is distributed on an "AS IS" basis,<br>
+    &nbsp;&nbsp;&nbsp; WITHOUT WARRANTY OF ANY KIND, either
+    express or implied. See the License<br>
+    &nbsp;&nbsp;&nbsp; for the specific language governing
+    rights and limitations under the<br>
+    &nbsp;&nbsp;&nbsp; License.
+</li>
+<br>
+<br>
+<li><big><span style="font-weight: bold;">jQuery</span></big><br>
+    <br>
+    Copyright (c) 2010 John Resig, <a style="font-weight: bold;"
+                                      href="http://jquery.com/">http://jquery.com/</a><br>
+    <br>
+    Permission is hereby granted, free of charge, to any person obtaining<br>
+    a copy of this software and associated documentation files (the<br>
+    "Software"), to deal in the Software without restriction, including<br>
+    without limitation the rights to use, copy, modify, merge, publish,<br>
+    distribute, sublicense, and/or sell copies of the Software, and to<br>
+    permit persons to whom the Software is furnished to do so, subject to<br>
+    the following conditions:<br>
+    <br>
+    The above copyright notice and this permission notice shall be<br>
+    included in all copies or substantial portions of the Software.<br>
+    <br>
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,<br>
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br>
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br>
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br>
+    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br>
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br>
+    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</li>
+<br>
+<br>
+<li><big><span style="font-weight: bold;">parseUri 1.2.2</span></big>
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp; (c) Steven Levithan (<a
+            style="font-weight: bold;"
+            href="http://stevenlevithan.com">stevenlevithan.com</a>)<br>
+    <br>
+    And distributed under the following license ("MIT"):<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; Permission is hereby granted, free of
+    charge, to any person<br>
+    &nbsp;&nbsp;&nbsp; obtaining a copy of this software and
+    associated documentation<br>
+    &nbsp;&nbsp;&nbsp; files (the "Software"), to deal in the
+    Software without<br>
+    &nbsp;&nbsp;&nbsp; restriction, including without
+    limitation the rights to use,<br>
+    &nbsp;&nbsp;&nbsp; copy, modify, merge, publish,
+    distribute, sublicense, and/or sell<br>
+    &nbsp;&nbsp;&nbsp; copies of the Software, and to permit
+    persons to whom the<br>
+    &nbsp;&nbsp;&nbsp; Software is furnished to do so, subject
+    to the following<br>
+    &nbsp;&nbsp;&nbsp; conditions:<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; The above copyright notice and this
+    permission notice shall be<br>
+    &nbsp;&nbsp;&nbsp; included in all copies or substantial
+    portions of the Software.<br>
+    <br>
+    &nbsp;&nbsp;&nbsp; THE SOFTWARE IS PROVIDED "AS IS",
+    WITHOUT WARRANTY OF ANY KIND,<br>
+    &nbsp;&nbsp;&nbsp; EXPRESS OR IMPLIED, INCLUDING BUT NOT
+    LIMITED TO THE WARRANTIES<br>
+    &nbsp;&nbsp;&nbsp; OF MERCHANTABILITY, FITNESS FOR A
+    PARTICULAR PURPOSE AND<br>
+    &nbsp;&nbsp;&nbsp; NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT<br>
+    &nbsp;&nbsp;&nbsp; HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+    OR OTHER LIABILITY,<br>
+    &nbsp;&nbsp;&nbsp; WHETHER IN AN ACTION OF CONTRACT, TORT
+    OR OTHERWISE, ARISING<br>
+    &nbsp;&nbsp;&nbsp; FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR<br>
+    &nbsp;&nbsp;&nbsp; OTHER DEALINGS IN THE SOFTWARE.
+</li>
+<br>
+<br>
+<li><big><span style="font-weight: bold;">Intermapper IPv6 Parser</span></big>
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp; (c) Intermapper (<a
+            style="font-weight: bold;"
+            href="http://www.intermapper.com">http://www.intermapper.com</a>)<br>
+    <br>
+    Free use with link back to site.<br>
+    <br>
+</li>
+<br>
+<br>
+<li><big><span style="font-weight: bold;">Public
+			Suffix List</span></big>
+    (<a href="http://publicsuffix.org/" style="font-weight: bold;">http://publicsuffix.org/</a>,
+    For recognizing common top level domains)<br>
+    <br>
+
+    <div style="margin-left: 40px;">&nbsp;The contents
+        of this file are subject to the Mozilla Public License Version <br>
+        &nbsp;1.1 (the "License"); you may not use this file except in
+        compliance with <br>
+        &nbsp;the License. You may obtain a copy of the License at <br>
+        &nbsp;http:www.mozilla.org/MPL/ <br>
+        &nbsp;Software distributed under the License is distributed on an
+        "AS IS" basis,<br>
+        &nbsp;WITHOUT WARRANTY OF ANY KIND, either express or implied. See
+        the License<br>
+        &nbsp;for the specific language governing rights and limitations
+        under the<br>
+        &nbsp;License.<br>
+        &nbsp;<br>
+        &nbsp;The Original Code is the Public Suffix List.<br>
+        &nbsp;<br>
+        &nbsp;The Initial Developer of the Original Code is<br>
+        &nbsp;Jo Hermans &lt;jo.hermans@gmail.com&gt;.<br>
+        &nbsp;Portions created by the Initial Developer are Copyright (C)
+        2007<br>
+        &nbsp;the Initial Developer. All Rights Reserved.<br>
+        &nbsp;<br>
+        &nbsp;Contributor(s):<br>
+        &nbsp;&nbsp; Ruben Arakelyan
+        &lt;ruben@wackomenace.co.uk&gt;<br>
+        &nbsp;&nbsp; Gervase Markham &lt;gerv@gerv.net&gt;<br>
+        &nbsp;&nbsp; Pamela Greene &lt;pamg.bugs@gmail.com&gt;<br>
+        &nbsp;&nbsp; David Triendl &lt;david@triendl.name&gt;<br>
+        &nbsp;&nbsp; The kind representatives of many TLD registries
+    </div>
+</li>
+
+<br>
+<br>
+
+<li><big><span
+        style="font-weight: bold;">Crypto-JS</span></big>
+    (<a href="http://code.google.com/p/crypto-js/"
+        style="font-weight: bold;">http://code.google.com/p/crypto-js/</a>,
+    For MD5 hashing)<br>
+    <br>
+
+    <div style="margin-left: 40px;">Copyright (c) 2009,
+        Jeff Mott. All rights reserved.<br>
+        <br>
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:<br>
+        <br>
+        Redistributions of source code must retain the above copyright notice,
+        this list of conditions and the following disclaimer.<br>
+        Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution.<br>
+        Neither the name Crypto-JS nor the names of its contributors may be
+        used to endorse or promote products derived from this software without
+        specific prior written permission.<br>
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+        IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+        TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+        PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+        HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+        SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+        LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+        DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+        THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    </div>
+</li>
+
+</ul>
+
+</div>
+</div>
+
+<script src="optionsinit.js"></script>
+
+</body>
+</html>
+
+
