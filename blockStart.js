@@ -177,8 +177,9 @@ var pageSourcesUntrusted = new Array();
 var topDomain = getPrimaryDomain(window.location.href);
 
 function isUntrusted(url)
-{
-	return (blocking_mode === BMODE_TYPES.WHITELIST_ALLOW_TOP_LEVEL ? islisted(ScriptBlock_Whitelist.blacklist, url) : false);
+{	// Fast and dirty fix for Bypass ScriptBlock using Google Cloud Storage
+	//return (blocking_mode === BMODE_TYPES.WHITELIST_ALLOW_TOP_LEVEL ? islisted(ScriptBlock_Whitelist.blacklist, url) : false);
+	return (blocking_mode === BMODE_TYPES.WHITELIST ? islisted(ScriptBlock_Whitelist.blacklist, url) : false);
 }
 
 function isWhitelisted(url) {

@@ -1,10 +1,10 @@
 if (config.get('currVersion') < 10000) {
     // Because we introduced lastVersion in 9001
-    if (config.get('currVersion') == 10000)
+    if (config.get('currVersion') == 10100)
         config.set('lastVersion', 10000);
 
-    config.set('currVersion', 10000);
-    config.set('currDisplayVersion', "1.0.0");
+    config.set('currVersion', 10100);
+    config.set('currDisplayVersion', "1.1.0");
 }
 
 if (isPasswordGood() !== PASSWORD_STATUS.okay) {
@@ -34,8 +34,8 @@ chrome.tabs.onUpdated.addListener(function (tabid, changeinfo, tab) {
                 chrome.browserAction.setBadgeText({text: tabBlockedCount + '', tabId: tab.id});
         });
     }
-    else {
+    /*else {
         chrome.browserAction.hide(tab.id);
-    }
+    }*/
 
 });
