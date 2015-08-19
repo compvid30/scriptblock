@@ -312,7 +312,7 @@ function addButtonsFromUrlList(urlList, urlListType, topDomain, topDomainIsWhite
                 labelBlock.innerText = blocking_mode === BMODE_TYPES.WHITELIST_ALLOW_TOP_LEVEL ? "Block" : "Block";
                 aRadioSetDiv.appendChild(labelBlock);
 
-              /*  if (blocking_mode === BMODE_TYPES.WHITELIST_ALLOW_TOP_LEVEL) {
+                if (blocking_mode === BMODE_TYPES.WHITELIST_ALLOW_TOP_LEVEL) {
                     var rbSameSite = document.createElement("input");
                     rbSameSite.type = "radio";
                     rbSameSite.id = randomID();
@@ -327,7 +327,7 @@ function addButtonsFromUrlList(urlList, urlListType, topDomain, topDomainIsWhite
                     labelSameSite.setAttribute("for", rbSameSite.id);
                     labelSameSite.innerText = "Same";
                     aRadioSetDiv.appendChild(labelSameSite);
-                } */
+                }
 
                 var rbTempAllow = document.createElement("input");
                 rbTempAllow.type = "radio";

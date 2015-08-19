@@ -323,21 +323,16 @@
     <br/>
     <table width="600" border="0">
         <tr>
-            <td width="198"><h4>Whitelist</h4></td>
-            <td width="198"><h4>Temp Whitelist</h4></td>
-            <td width="198"><h4>Untrusted List</h4></td>
+            <td width="295"><h4>Whitelist</h4></td>
+            <td width="295"><h4>Temp Whitelist (Does not update live)</h4></td>
         </tr>
         <tr>
             <td>
-                <textarea name="whitelist" id="whitelist" cols="26" rows="12"
+                <textarea name="whitelist" id="whitelist" cols="40" rows="12"
                           style="padding: 10px 10px 10px 10px"></textarea>
             </td>
             <td>
-                <textarea name="tempAllowList" id="tempAllowList" cols="26" rows="12"
-                          style="padding: 10px 10px 10px 10px"></textarea>
-            </td>
-            <td>
-                <textarea name="blacklist" id="blacklist" cols="26" rows="12"
+                <textarea name="tempAllowList" id="tempAllowList" cols="40" rows="12"
                           style="padding: 10px 10px 10px 10px"></textarea>
             </td>
         </tr>
@@ -350,27 +345,24 @@
             <td height="43" colspan="2">&nbsp;</td>
         </tr>
     </table>
-    		<div id="tabs-Choices">
-			<br>
-			<form style="margin-top: 1em; display: inline"> 
-				<div id="radioset_ReloadTabs" style="padding-left: 50px;"> 
-					<input type="radio" id="radio_ON_ReloadTabs" name="radio_ReloadTabs" /><label for="radio_ON_ReloadTabs">ON</label> 
-					<input type="radio" id="radio_OFF_ReloadTabs" name="radio_ReloadTabs" /><label for="radio_OFF_ReloadTabs">OFF</label>
-					<label>&nbsp; &nbsp;Reload tabs when permissions change</label>
-				</div> 
-				<br>
-				<div id="radioset_HideHarmfulSearches" style="padding-left: 50px;"> 
-					<input type="radio" id="radio_ON_HideHarmfulSearches" name="radio_HideHarmfulSearches" /><label for="radio_ON_HideHarmfulSearches">ON</label> 
-					<input type="radio" id="radio_OFF_HideHarmfulSearches" name="radio_HideHarmfulSearches" /><label for="radio_OFF_HideHarmfulSearches">OFF</label>
-					<label>&nbsp; &nbsp;Hide Google Search results Google labels harmful</label>
-				</div> 				
-			</form> 
-			<br>
-			<br>
-			<button id="button_ChoicesSave" onclick="save(); saveButtonAnimate(this.id);">Save Changes</button>			
-		</div>
 </div>
 <div id="tabs-About">
+<h3>History:</h3>
+
+Version 1.2<br>
+
+Interface simplifyed<br>
+Grayout bug fixed<br><br>
+
+Version 1.1<br>
+
+Security hole fixed<br><br>
+
+Version 1.0<br>
+
+First Release<br><br><br>
+
+<h3>About ScriptBlock:</h3>
 ScriptBlock is based on the old Chrome Extension &quot;NotScripts&quot;. It gives
 you greater control over
 what javascript, iframes, and plugins runs in your browser to increase security and lower the
@@ -392,7 +384,7 @@ the project homepage at:<br>
 
 <div style="padding: 0px 0px 0px 50px">
     <h3>
-        <a href="https://github.com/compvid30/scriptblock/issues">https://github.com/compvid30/scriptblock/issues</a>
+<a href="https://github.com/compvid30/scriptblock/issues">https://github.com/compvid30/scriptblock/issues</a>
     </h3>
 </div>
 Remember to include steps to reproduce the bug or a link to a site where the bug occurred.
@@ -424,7 +416,7 @@ Remember to include steps to reproduce the bug or a link to a site where the bug
 <ul>
 <li><big><span style="font-weight: bold;">ScriptBlock</span></big><br>
     <br>
-    &nbsp;&nbsp;&nbsp; Copyright © 2013-2014&nbsp; Oliver von Schleusen&nbsp;&nbsp;&nbsp;<br>
+    &nbsp;&nbsp;&nbsp; Copyright © 2013-2015&nbsp; Oliver von Schleusen&nbsp;&nbsp;&nbsp;<br>
     &nbsp;&nbsp;&nbsp; Parts are 
   Copyright &copy; 2010&nbsp;&nbsp;Eric Wong&nbsp; <br><br>
   &nbsp;&nbsp;&nbsp; This program is free software: you can

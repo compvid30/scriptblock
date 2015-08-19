@@ -44,7 +44,7 @@ var config = {
 };
 
 config.defaults({
-    whitelist: ["google.com", "google.ca", "google.co.uk", "google.de", "google.com.au", "ajax.googleapis.com", "gstatic.com", "youtube.com", "ytimg.com",
+    whitelist: ["google.com", "google.ca", "google.co.uk", "google.de", "google.com.au", "gstatic.com", "youtube.com", "ytimg.com",
 		"live.com", "microsoft.com", "hotmail.com", "apple.com", "yahoo.com", "yahooapis.com", "yimg.com", "paypal.com", "paypalobjects.com"],
 	whitelistHash: "",
 	
@@ -52,8 +52,8 @@ config.defaults({
 	showPageActionButton: true,
 	
 	lastVersion: 0,
-	currVersion: 1,
-	currDisplayVersion: "1.1.0",
+	currVersion: 0,
+	currDisplayVersion: "1.2.0",
 	
 	multiSelect: false,
 	
@@ -61,7 +61,7 @@ config.defaults({
 	
 	// Blacklist mode not currently implemented
 	useBlacklistMode: false,
-	blacklist: ["googleapis.com"],
+	blacklist: [],
 	blacklistHash: ""
 });
 
