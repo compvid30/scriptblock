@@ -74,9 +74,9 @@ function save() {
 
     updateListStats();
 
-    bgPage.config.set('reloadCurrentTabOnToggle', $('#radio_ON_ReloadTabs').attr('checked') ? true : false);
+    /*bgPage.config.set('reloadCurrentTabOnToggle', $('#radio_ON_ReloadTabs').attr('checked') ? true : false);
     bgPage.config.set('showPageActionButton', $('#radio_ON_ShowActionButton').attr('checked') ? true : false);
-    bgPage.config.set('hideHarmfulSearches', $('#radio_ON_HideHarmfulSearches').attr('checked') ? true : false);
+    bgPage.config.set('hideHarmfulSearches', $('#radio_ON_HideHarmfulSearches').attr('checked') ? true : false);*/
 }
 
 function handleStorageChangeUpdateLists(event) {
