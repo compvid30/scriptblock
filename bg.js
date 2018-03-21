@@ -5,7 +5,7 @@ if (config.get('currVersion') < 10300) {
         config.set('lastVersion', 10200);
 
     config.set('currVersion', 10300);
-    config.set('currDisplayVersion', "1.3.0");
+    config.set('currDisplayVersion', "1.4.0");
 }
 
 if (isPasswordGood() !== PASSWORD_STATUS.okay) {
